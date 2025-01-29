@@ -6,7 +6,6 @@ public class Scanner(string source)
     private int start = 0;
     private int current = 0;
     private int line = 1;
-    private bool hadError = false;
 
     public List<Token> ScanTokens()
     {
@@ -48,7 +47,7 @@ public class Scanner(string source)
             case '+': AddToken(TokenType.PLUS); break;
             case ';': AddToken(TokenType.SEMICOLON); break;
             case '*': AddToken(TokenType.STAR); break;
-            default: Error(line, "Unexpected character."); break;
+            default: ErrorHandler.Error(line, "Unexpected character."); break;
         }
     }
 
@@ -72,16 +71,5 @@ public class Scanner(string source)
             Literal = literal,
             Line = line
         });
-    }
-
-    void Error(int line, string message)
-    {
-        Report(line, string.Empty, message);
-    }
-
-    void Report(int line, string where, string message)
-    {
-        Console.WriteLine($"[line {line}] Error {where}: {message}");
-        hadError = true;
     }
 }
