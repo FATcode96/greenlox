@@ -47,8 +47,25 @@ public class Scanner(string source)
             case '+': AddToken(TokenType.PLUS); break;
             case ';': AddToken(TokenType.SEMICOLON); break;
             case '*': AddToken(TokenType.STAR); break;
+
+            case '!': AddToken(Match('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
+            case '=': AddToken(Match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL); break;
+            case '<': AddToken(Match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
+            case '>': AddToken(Match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
+
             default: ErrorHandler.Error(line, "Unexpected character."); break;
         }
+    }
+
+    bool Match(char expected)
+    {
+        if(IsAtEnd() || source[current] != expected) 
+        { 
+            return false; 
+        }
+
+        current++;
+        return true;
     }
 
     char Advance()
