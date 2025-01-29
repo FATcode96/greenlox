@@ -6,6 +6,7 @@ public class Scanner(string source)
     private int start = 0;
     private int current = 0;
     private int line = 1;
+    private bool hadError = false;
 
     public List<Token> ScanTokens()
     {
@@ -34,22 +35,21 @@ public class Scanner(string source)
     void ScanToken()
     {
         char c = Advance();
-        var tokenType = c switch
+        
+        switch(c) 
         {
-            '(' => TokenType.LEFT_PAREN,
-            ')' => TokenType.RIGHT_PAREN,
-            '{' => TokenType.LEFT_BRACE,
-            '}' => TokenType.RIGHT_BRACE,
-            ',' => TokenType.COMMA,
-            '.' => TokenType.DOT,
-            '-' => TokenType.MINUS,
-            '+' => TokenType.PLUS,
-            ';' => TokenType.SEMICOLON,
-            '*' => TokenType.STAR,
-            _ => TokenType.EOF // Wrong, should return an error
-        };
-
-        AddToken(tokenType);
+            case '(': AddToken(TokenType.LEFT_PAREN); break;
+            case ')': AddToken(TokenType.RIGHT_PAREN); break;
+            case '{': AddToken(TokenType.LEFT_BRACE); break;
+            case '}': AddToken(TokenType.RIGHT_BRACE); break;
+            case ',': AddToken(TokenType.COMMA); break;
+            case '.': AddToken(TokenType.DOT); break;
+            case '-': AddToken(TokenType.MINUS); break;
+            case '+': AddToken(TokenType.PLUS); break;
+            case ';': AddToken(TokenType.SEMICOLON); break;
+            case '*': AddToken(TokenType.STAR); break;
+            default: Error(line, "Unexpected character."); break;
+        }
     }
 
     char Advance()
@@ -72,5 +72,16 @@ public class Scanner(string source)
             Literal = literal,
             Line = line
         });
+    }
+
+    void Error(int line, string message)
+    {
+        Report(line, string.Empty, message);
+    }
+
+    void Report(int line, string where, string message)
+    {
+        Console.WriteLine($"[line {line}] Error {where}: {message}");
+        hadError = true;
     }
 }
