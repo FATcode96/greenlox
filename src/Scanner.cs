@@ -48,14 +48,41 @@ public class Scanner(string source)
             case ';': AddToken(TokenType.SEMICOLON); break;
             case '*': AddToken(TokenType.STAR); break;
 
-            case '!': AddToken(Match('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
-            case '=': AddToken(Match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL); break;
-            case '<': AddToken(Match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
-            case '>': AddToken(Match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
+            case '!': AddToken(Match('=') ? 
+                TokenType.BANG_EQUAL : 
+                TokenType.BANG); break;
+            case '=': AddToken(Match('=') ? 
+                TokenType.EQUAL_EQUAL : 
+                TokenType.EQUAL); break;
+            case '<': AddToken(Match('=') ? 
+                TokenType.LESS_EQUAL : 
+                TokenType.LESS); break;
+            case '>': AddToken(Match('=') ? 
+                TokenType.GREATER_EQUAL : 
+                TokenType.GREATER); break;
+
+            case '/':
+                if (Match('/'))
+                {
+                    while (Peek() != '\n' && !IsAtEnd()) { Advance(); }
+                }
+                else
+                {
+                    AddToken(TokenType.SLASH);
+                }
+                break;
+
+            case ' ':
+            case '\r':
+            case '\t':
+                break;
+            case '\n': line++; break;
 
             default: ErrorHandler.Error(line, "Unexpected character."); break;
         }
     }
+
+    char Peek() => IsAtEnd() ? '\0' : source[current];
 
     bool Match(char expected)
     {
