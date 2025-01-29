@@ -78,8 +78,32 @@ public class Scanner(string source)
                 break;
             case '\n': line++; break;
 
+            case '"': String(); break;
+
             default: ErrorHandler.Error(line, "Unexpected character."); break;
         }
+    }
+
+    void String()
+    {
+        while (Peek() != '"' && !IsAtEnd())
+        {
+            if(Peek() == '\n')
+            {
+                line++;
+            }
+            Advance();
+        }
+
+        if(IsAtEnd())
+        {
+            ErrorHandler.Error(line, "Unterminated string.");
+        }
+
+        Advance();
+
+        var value = source[1..^1];
+        AddToken(TokenType.STRING, value);
     }
 
     char Peek() => IsAtEnd() ? '\0' : source[current];
