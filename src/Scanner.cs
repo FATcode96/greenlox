@@ -76,10 +76,33 @@ public class Scanner(string source)
 
             default:
                 if (IsDigit(c)) { Number(); }
+                else if (IsAlpha(c)) { Identifier(); }
                 else { ErrorHandler.Error(line, "Unexpected character."); } 
                 break;
         }
     }
+
+    void Identifier()
+    {
+        while(IsAlphaNumeric(Peek()))
+        {
+            Advance();
+        }
+
+        var text = source[start..current];
+        var type = Keywords.GetValues.TryGetValue(text, out var value) ? 
+            value : 
+            TokenType.IDENTIFIER;
+
+        AddToken(type);
+    }
+
+    bool IsAlphaNumeric(char c) => IsAlpha(c) || IsDigit(c);
+
+    bool IsAlpha(char c) =>
+        (c >= 'a' && c <= 'z') ||
+        (c >= 'A' && c <= 'A') ||
+        c == '_';
 
     void Number()
     {

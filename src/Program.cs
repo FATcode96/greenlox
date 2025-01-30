@@ -1,6 +1,6 @@
 ﻿using greenlox;
 
-var scanner = new Scanner("15.123\n\"Hello, world!\"");
+var scanner = new Scanner("fun (num)\n{ return num + 1 }");
 var tokens = scanner.ScanTokens();
 
 foreach (var token in tokens)
