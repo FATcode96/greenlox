@@ -99,7 +99,7 @@ public class Scanner(string source)
 
     bool IsAlphaNumeric(char c) => IsAlpha(c) || IsDigit(c);
 
-    bool IsAlpha(char c) =>
+    static bool IsAlpha(char c) =>
         (c >= 'a' && c <= 'z') ||
         (c >= 'A' && c <= 'A') ||
         c == '_';

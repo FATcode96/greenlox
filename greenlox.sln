@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "greenlox", "src\greenlox.csproj", "{DF36B692-8124-43EB-B96D-D590D62D4D59}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CCC30C39-11D5-49FE-9FD1-F23D33DB732B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "greenlox.tests", "tests\greenlox.tests.csproj", "{7DD339B5-C9EC-4D86-BCDE-FA34FA18F727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenLox", "src\GreenLox\GreenLox.csproj", "{417B549C-A02B-4644-89DB-AE2544B34161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "src\Tools\Tools.csproj", "{51A52081-6E50-445C-B906-C0D91751377D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenLox.Tests", "tests\GreenLox.Tests.csproj", "{FC95A01B-A371-44EA-8B03-A98373FEA5F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +20,21 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF36B692-8124-43EB-B96D-D590D62D4D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF36B692-8124-43EB-B96D-D590D62D4D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF36B692-8124-43EB-B96D-D590D62D4D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF36B692-8124-43EB-B96D-D590D62D4D59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DD339B5-C9EC-4D86-BCDE-FA34FA18F727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DD339B5-C9EC-4D86-BCDE-FA34FA18F727}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DD339B5-C9EC-4D86-BCDE-FA34FA18F727}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DD339B5-C9EC-4D86-BCDE-FA34FA18F727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417B549C-A02B-4644-89DB-AE2544B34161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417B549C-A02B-4644-89DB-AE2544B34161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417B549C-A02B-4644-89DB-AE2544B34161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417B549C-A02B-4644-89DB-AE2544B34161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A52081-6E50-445C-B906-C0D91751377D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A52081-6E50-445C-B906-C0D91751377D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A52081-6E50-445C-B906-C0D91751377D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A52081-6E50-445C-B906-C0D91751377D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC95A01B-A371-44EA-8B03-A98373FEA5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC95A01B-A371-44EA-8B03-A98373FEA5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC95A01B-A371-44EA-8B03-A98373FEA5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC95A01B-A371-44EA-8B03-A98373FEA5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{417B549C-A02B-4644-89DB-AE2544B34161} = {CCC30C39-11D5-49FE-9FD1-F23D33DB732B}
+		{51A52081-6E50-445C-B906-C0D91751377D} = {CCC30C39-11D5-49FE-9FD1-F23D33DB732B}
 	EndGlobalSection
 EndGlobal

@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\greenlox.csproj" />
+    <ProjectReference Include="..\src\GreenLox.csproj" />
+    <ProjectReference Include="..\src\GreenLox\GreenLox.csproj" />
+    <ProjectReference Include="..\src\Tools\Tools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
