@@ -62,14 +62,8 @@ public class Scanner(string source)
                 TokenType.GREATER); break;
 
             case '/':
-                if (Match('/'))
-                {
-                    while (Peek() != '\n' && !IsAtEnd()) { Advance(); }
-                }
-                else
-                {
-                    AddToken(TokenType.SLASH);
-                }
+                if (Match('/')) { while (Peek() != '\n' && !IsAtEnd()) { Advance(); }}
+                else { AddToken(TokenType.SLASH); }
                 break;
 
             case ' ':
@@ -80,9 +74,29 @@ public class Scanner(string source)
 
             case '"': String(); break;
 
-            default: ErrorHandler.Error(line, "Unexpected character."); break;
+            default:
+                if (IsDigit(c)) { Number(); }
+                else { ErrorHandler.Error(line, "Unexpected character."); } 
+                break;
         }
     }
+
+    void Number()
+    {
+        while (IsDigit(Peek())) { Advance(); }
+
+        if(Peek() == '.' && IsDigit(PeekNext())) 
+        { 
+            Advance();
+            while (IsDigit(Peek())) { Advance(); }
+        }
+
+        AddToken(TokenType.NUMBER, double.Parse(source[start..current]));
+    }
+
+    char PeekNext() => current + 1 >= source.Length ? '\0' : source[current+1];
+
+    bool IsDigit(char c) => c >= '0' && c <= '9';
 
     void String()
     {
@@ -102,7 +116,7 @@ public class Scanner(string source)
 
         Advance();
 
-        var value = source[1..^1];
+        var value = source[(start + 1)..(current - 1)];
         AddToken(TokenType.STRING, value);
     }
 
